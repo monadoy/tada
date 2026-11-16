@@ -1,0 +1,368 @@
+/* Site components: the previous / next buttons, the home page section cards, paper figures, the
+   research-note banner and the engine-key request form. The contents list is in nav.css.
+   Colours and fonts come from theme.css (Glass Cockpit). Glyphs are Material Design Icons only. */
+
+/* ---- Previous / next buttons -------------------------------------------- */
+.tada-pager {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.8rem;
+  margin: 2.4rem 0 0.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--tada-rule);
+}
+.md-typeset .tada-pager__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 3.4rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--tada-tile-border);
+  border-radius: var(--tada-radius);
+  background: var(--tada-surface);
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.md-typeset .tada-pager__btn:hover,
+.md-typeset .tada-pager__btn:focus-visible {
+  border-color: var(--tada-champion);
+  box-shadow: inset 0 -2px 0 var(--tada-champion);
+  color: var(--md-default-fg-color);
+}
+.tada-pager__btn--next { grid-column: 2; justify-content: flex-end; text-align: right; }
+.tada-pager__btn--prev { grid-column: 1; }
+.tada-pager__text { display: flex; flex-direction: column; min-width: 0; }
+.tada-pager__dir {
+  font-family: var(--tada-font-head);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tada-tile-label);
+}
+[data-md-color-scheme="default"] .tada-pager__dir { color: #0072a3; }
+.tada-pager__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--tada-font-head);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+.tada-pager__btn--next .tada-pager__title { justify-content: flex-end; }
+.tada-pager__glyph, .tada-pager__arrow { display: inline-flex; flex: 0 0 auto; }
+.tada-pager__glyph svg { width: 1rem; height: 1rem; fill: currentcolor; opacity: 0.8; }
+.tada-pager__arrow svg { width: 1.2rem; height: 1.2rem; fill: var(--tada-champion); transition: transform 0.15s; }
+.tada-pager__btn--prev:hover .tada-pager__arrow svg { transform: translateX(-3px); }
+.tada-pager__btn--next:hover .tada-pager__arrow svg { transform: translateX(3px); }
+@media (max-width: 600px) {
+  .tada-pager { grid-template-columns: minmax(0, 1fr); }
+  .tada-pager__btn--next, .tada-pager__btn--prev { grid-column: 1; }
+}
+@media print { .tada-pager { display: none; } }
+
+/* ---- Section cards (home and section index pages) ------------------------ */
+.md-typeset ul.tada-sections:not([hidden]) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.8rem;
+  margin: 1.2rem 0;
+  padding: 0;
+  list-style: none;
+}
+.md-typeset ul.tada-sections > li { margin: 0; }
+.md-typeset .tada-section {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 0.7rem;
+  height: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--tada-tile-border);
+  border-radius: var(--tada-radius);
+  background: var(--tada-surface);
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.md-typeset .tada-section:hover,
+.md-typeset .tada-section:focus-visible {
+  border-color: var(--tada-champion);
+  box-shadow: inset 0 -2px 0 var(--tada-champion);
+  color: var(--md-default-fg-color);
+}
+.tada-section__glyph { grid-row: 1 / span 2; align-self: start; padding-top: 0.1rem; }
+.md-typeset .tada-section__glyph .twemoji { width: 1.5rem; height: 1.5rem; color: var(--tada-tile-label); }
+.md-typeset .tada-section__glyph .twemoji svg { width: 1.5rem; height: 1.5rem; max-height: none; }
+[data-md-color-scheme="default"] .md-typeset .tada-section__glyph .twemoji { color: #0072a3; }
+.tada-section__name {
+  font-family: var(--tada-font-head);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.tada-section__what { font-size: 0.68rem; line-height: 1.45; color: var(--md-default-fg-color--light); }
+
+/* inline glyphs in running text keep the text colour and size */
+.md-typeset .twemoji { vertical-align: text-bottom; }
+
+/* ---- Results table -------------------------------------------------------- */
+.md-typeset table.tada-results td, .md-typeset table.tada-results th { text-align: center; }
+.md-typeset table.tada-results td:first-child, .md-typeset table.tada-results th:first-child { text-align: left; }
+.md-typeset table.tada-results .is-best { color: var(--tada-ok); font-weight: 600; }
+
+/* ---- Paper figures --------------------------------------------------------- */
+.md-typeset figure.tada-paper-fig {
+  margin: 1.2rem 0;
+  padding: 0.7rem 0.7rem 0;
+  border: 1px solid var(--tada-tile-border);
+  border-radius: var(--tada-radius);
+  background: #ffffff;     /* the figures are drawn for a white page, in both themes */
+}
+.md-typeset figure.tada-paper-fig img { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+.md-typeset figure.tada-paper-fig.is-narrow img { max-width: min(100%, 34rem); }
+.md-typeset figure.tada-paper-fig figcaption {
+  max-width: none;
+  margin: 0.7rem -0.7rem 0;
+  padding: 0.5rem 0.8rem;
+  border-top: 2px solid var(--tada-caption-accent);
+  background: var(--tada-caption-bg);
+  color: var(--tada-caption-fg);
+  font-family: var(--tada-font-head);
+  font-size: 0.68rem;
+  font-style: normal;
+  text-align: left;
+}
+
+/* ---- Research-note banner --------------------------------------------------- */
+.md-typeset .admonition.tada-archive {
+  border-color: var(--tada-warn);
+  background: transparent;
+  font-size: 0.66rem;
+}
+.md-typeset .tada-archive > .admonition-title {
+  background: color-mix(in srgb, var(--tada-warn) 12%, transparent);
+  font-family: var(--tada-font-head);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.md-typeset .tada-archive > .admonition-title::before {
+  background-color: var(--tada-warn);
+  -webkit-mask-image: var(--md-admonition-icon--quote);
+          mask-image: var(--md-admonition-icon--quote);
+}
+
+/* ---- Engine-key request form -------------------------------------------------- */
+.tada-keyreq {
+  margin: 1.2rem 0;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid var(--tada-tile-border);
+  border-radius: var(--tada-radius);
+  background: var(--tada-surface);
+  font-family: var(--tada-font-head);
+}
+.tada-keyreq__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem 1rem; }
+.tada-keyreq__field { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
+.tada-keyreq__field--wide { grid-column: 1 / -1; }
+.tada-keyreq label, .tada-keyreq legend {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tada-tile-label);
+}
+[data-md-color-scheme="default"] .tada-keyreq label { color: #0072a3; }
+.tada-keyreq input[type="text"], .tada-keyreq input[type="email"], .tada-keyreq select, .tada-keyreq textarea {
+  width: 100%;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--tada-tile-border);
+  border-radius: var(--tada-radius);
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-size: 0.74rem;
+}
+.tada-keyreq textarea { min-height: 6.5rem; resize: vertical; font-family: var(--tada-font-body); }
+.tada-keyreq input:focus, .tada-keyreq select:focus, .tada-keyreq textarea:focus {
+  outline: none;
+  border-color: var(--md-typeset-a-color);
+}
+.tada-keyreq [aria-invalid="true"] { border-color: var(--tada-bad); }
+.tada-keyreq__hint { font-family: var(--tada-font-body); font-size: 0.64rem; color: var(--md-default-fg-color--light); }
+.tada-keyreq__agree { display: flex; align-items: flex-start; gap: 0.5rem; font-family: var(--tada-font-body); font-size: 0.7rem; }
+.tada-keyreq__agree input { margin-top: 0.2rem; }
+.tada-keyreq__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 1rem; }
+.tada-keyreq__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--tada-tile-border);
+  border-radius: var(--tada-radius);
+  background: transparent;
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.15s, filter 0.15s;
+}
+.tada-keyreq__btn:hover { border-color: var(--tada-champion); }
+.tada-keyreq__btn--primary { border-color: var(--tada-champion); background: var(--tada-champion); color: #0a1324; }
+.tada-keyreq__btn--primary:hover { filter: brightness(1.1); }
+.tada-keyreq__btn svg { width: 1rem; height: 1rem; fill: currentcolor; }
+.tada-keyreq__status { flex: 1 1 14rem; font-family: var(--tada-font-body); font-size: 0.68rem; color: var(--md-default-fg-color--light); }
+.tada-keyreq__status.is-error { color: var(--tada-bad); }
+.tada-keyreq__status.is-ok { color: var(--tada-ok); }
+.tada-keyreq__preview {
+  margin: 0.9rem 0 0;
+  padding: 0.7rem 0.8rem;
+  border: 1px dashed var(--tada-tile-border);
+  border-radius: var(--tada-radius);
+  background: var(--md-code-bg-color);
+  font-family: var(--tada-font-mono);
+  font-size: 0.62rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.tada-keyreq__pending {
+  margin: 0 0 0.9rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--tada-warn);
+  border-radius: var(--tada-radius);
+  color: var(--tada-warn);
+  font-family: var(--tada-font-body);
+  font-size: 0.68rem;
+}
+@media (max-width: 700px) { .tada-keyreq__grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* the agreement line is running text, not a field label */
+.tada-keyreq label.tada-keyreq__agree,
+[data-md-color-scheme="default"] .tada-keyreq label.tada-keyreq__agree {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--md-default-fg-color);
+}
+.tada-keyreq__preview[hidden] { display: none; }
+
+/* ---- Page chrome and typography ---------------------------------------------------------------------- */
+/* header and footer speak in the interface face; the article keeps the serif */
+.md-header__title, .md-search__input, .md-source, .md-footer-meta, .md-top, .md-search-result { font-family: var(--tada-font-head); }
+.md-header__title { font-weight: 600; letter-spacing: 0.02em; }
+.md-search__form { border: 1px solid var(--tada-rule); border-radius: var(--tada-radius); background: rgba(255, 255, 255, 0.04); }
+.md-search__form:hover { background: rgba(255, 255, 255, 0.07); }
+.md-footer-meta { font-size: 0.62rem; }
+.md-footer-meta__inner { padding: 0.2rem 0.4rem; }
+.md-copyright { color: var(--md-footer-fg-color--light); }
+
+.md-typeset { line-height: 1.65; }
+.md-typeset h1 { margin-bottom: 0.9em; font-weight: 600; letter-spacing: 0.01em; color: var(--md-default-fg-color); }
+.md-typeset h2 { margin-top: 2.2em; }
+.md-typeset h3 { margin-top: 1.6em; }
+.md-typeset a { text-decoration: none; text-underline-offset: 0.18em; }
+.md-typeset a:hover { text-decoration: underline; }
+.md-typeset .tada-section:hover, .md-typeset .tada-pager__btn:hover, .md-typeset .md-button:hover,
+.md-typeset .headerlink:hover, .md-typeset .lab-btn:hover, .md-typeset .tada-table a:hover { text-decoration: none; }
+::selection { background: color-mix(in srgb, var(--tada-champion) 32%, transparent); }
+:focus-visible { outline: 2px solid var(--md-typeset-a-color); outline-offset: 2px; }
+.md-sidebar__scrollwrap { scrollbar-width: thin; scrollbar-color: var(--tada-rule) transparent; }
+
+/* the lede under a page title */
+.md-typeset .tada-lede { max-width: 34rem; font-size: 1.02rem; line-height: 1.5; color: var(--md-default-fg-color); }
+
+/* buttons */
+.md-typeset .md-button {
+  padding: 0.5em 1.1em;
+  border: 1px solid var(--tada-tile-border);
+  border-radius: var(--tada-radius);
+  background: var(--tada-surface);
+  color: var(--md-default-fg-color);
+  font-family: var(--tada-font-head);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: border-color 0.15s, background-color 0.15s, filter 0.15s;
+}
+.md-typeset .md-button:hover, .md-typeset .md-button:focus {
+  border-color: var(--tada-champion);
+  background: var(--tada-champion-bg);
+  color: var(--md-default-fg-color);
+}
+.md-typeset .md-button--primary, .md-typeset .md-button--primary:hover, .md-typeset .md-button--primary:focus {
+  border-color: var(--tada-champion);
+  background: var(--tada-champion);
+  color: #0a1324;
+}
+.md-typeset .md-button--primary:hover { filter: brightness(1.1); }
+.md-typeset .md-button .twemoji { vertical-align: -0.2em; margin-right: 0.3em; }
+.tada-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.2rem 0 1.6rem; }
+.md-typeset .tada-actions p { display: contents; }
+
+/* plain tables: the same quiet grid as the result tables, and compact */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--tada-rule);
+  border-radius: var(--tada-radius);
+  box-shadow: none;
+  background: transparent;
+  font-size: 0.7rem;
+}
+.md-typeset table:not([class]) th {
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--tada-rule);
+  background: var(--tada-table-head-bg);
+  color: var(--tada-table-head-fg);
+  font-family: var(--tada-font-head);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.md-typeset table:not([class]) th code { text-transform: none; letter-spacing: 0; background: none; color: inherit; }
+.md-typeset table:not([class]) td { padding: 0.42rem 0.7rem; border-top: 1px solid var(--tada-rule); line-height: 1.45; vertical-align: top; }
+.md-typeset table:not([class]) td code { white-space: nowrap; }
+.md-typeset table:not([class]) tbody tr:hover { background: var(--md-accent-fg-color--transparent); box-shadow: none; }
+
+/* admonitions: a hairline box with one accent edge */
+.md-typeset .admonition, .md-typeset details {
+  border-width: 1px 1px 1px 3px;
+  border-radius: var(--tada-radius);
+  box-shadow: none;
+  background: var(--tada-surface);
+  font-size: 0.72rem;
+}
+.md-typeset .admonition-title, .md-typeset summary {
+  font-family: var(--tada-font-head);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.md-typeset .admonition.abstract > .admonition-title, .md-typeset .admonition.summary > .admonition-title { background: transparent; }
+
+/* code */
+.md-typeset code { border-radius: 0.15rem; }
+.md-typeset pre > code { border: 1px solid var(--tada-rule); border-radius: var(--tada-radius); }
+
+/* home: the two approaches, side by side */
+.md-typeset .tada-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.8rem; margin: 1.2rem 0; }
+.tada-duo__card { padding: 0.9rem 1rem; border: 1px solid var(--tada-tile-border); border-radius: var(--tada-radius); background: var(--tada-surface); }
+.md-typeset .tada-duo__card h3 { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.4rem; font-size: 0.86rem; color: var(--md-default-fg-color); }
+.md-typeset .tada-duo__card h3 .twemoji { width: 1.2rem; height: 1.2rem; color: var(--tada-tile-label); }
+.md-typeset .tada-duo__card h3 .twemoji svg { width: 1.2rem; height: 1.2rem; max-height: none; }
+[data-md-color-scheme="default"] .md-typeset .tada-duo__card h3 .twemoji { color: #0072a3; }
+.md-typeset .tada-duo__card p { margin: 0; font-size: 0.72rem; line-height: 1.5; color: var(--md-default-fg-color--light); }
+.tada-duo__who { display: block; margin-bottom: 0.3rem; font-family: var(--tada-font-head); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--md-default-fg-color--light); }
+.md-typeset .tada-funding { display: block; width: 100%; max-width: 34rem; height: auto; margin: 0.6rem 0 1rem; border-radius: var(--tada-radius); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+.md-typeset .tada-tiles--hero { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; margin: 0 0 1.6rem; }
+@media (max-width: 44em) { .md-typeset .tada-tiles--hero { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tada-tiles--hero .tada-tile { min-width: 0; padding: 0.6rem 0.7rem 0.65rem; }
+.tada-tiles--hero .tada-tile__label { min-height: 0; margin-bottom: 0.2rem; }
+.tada-tiles--hero .tada-tile__value { display: block; font-size: 1.5rem; line-height: 1.15; }
+.tada-tiles--hero .tada-tile__delta { margin-top: 0.2rem; white-space: normal; line-height: 1.35; color: #9aabc6; }

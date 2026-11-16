@@ -1,0 +1,203 @@
+/* Navigation: the contents list (left sidebar on wide screens, drawer on narrow ones) and the page outline.
+   One row style everywhere: glyph, label, optional chevron, on a fixed rhythm; the current page carries a
+   magenta marker. Sections stay closed until you are in them, so the list is short by default. */
+
+[data-md-color-scheme="slate"] { --tada-nav-glyph: #3fd0ff; }
+[data-md-color-scheme="default"] { --tada-nav-glyph: #0072a3; }
+
+/* ---- shared: one row --------------------------------------------------------------------------------- */
+.md-nav--primary .md-nav__link {
+  align-items: center;
+  font-family: var(--tada-font-head);
+  color: var(--md-default-fg-color);
+  transition: background-color 0.12s, color 0.12s;
+}
+.md-nav--primary .md-nav__link > svg {            /* the page glyph (front matter icon:) */
+  flex: 0 0 auto;
+  margin: 0;
+  fill: currentcolor;
+  color: var(--tada-nav-glyph);
+}
+.md-nav--primary .md-nav__link .md-ellipsis { flex: 1 1 auto; min-width: 0; }
+.md-nav--primary .md-nav__link .md-nav__icon { color: var(--md-default-fg-color--lighter); }
+.md-nav--primary .md-nav__link--active,
+.md-nav--primary .md-nav__item .md-nav__link--active { color: var(--tada-champion); font-weight: 600; }
+.md-nav--primary .md-nav__link--active > svg { color: var(--tada-champion); }
+/* a section row is a link plus a chevron button; the pair behaves as one row */
+.md-nav--primary .md-nav__container { padding: 0; gap: 0; background: none; }
+.md-nav--primary .md-nav__container > .md-nav__link { margin: 0; }
+/* when the section's own page is the current one, the whole row is marked once, not each half */
+.md-nav--primary .md-nav__container > .md-nav__link--active,
+.md-nav--primary .md-nav__container > .md-nav__link--active:hover { background: none; box-shadow: none; }
+.md-nav--primary .md-nav__container:has(> .md-nav__link--active) { background: var(--tada-champion-bg); border-radius: 0.2rem; }
+
+/* ---- wide screens: the Contents sidebar ---------------------------------------------------------------- */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary { width: 12.4rem; }
+  .md-sidebar--primary .md-sidebar__inner { padding-right: 0.5rem; }
+  .md-sidebar--primary .md-sidebar__inner::before,
+  .md-nav--secondary > .md-nav__title {
+    display: block;
+    margin: 0 0 0.45rem;
+    padding: 0.15rem 0.5rem 0.45rem;
+    border-bottom: 1px solid var(--tada-rule);
+    background: var(--md-default-bg-color);
+    box-shadow: none;
+    font-family: var(--tada-font-head);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--md-default-fg-color--light);
+  }
+  .md-sidebar--primary .md-sidebar__inner::before { content: "Contents"; position: sticky; top: 0; z-index: 2; }
+  .md-nav--primary > .md-nav__title[for="__drawer"] { display: none; }
+
+  .md-nav--primary .md-nav__list { padding: 0; }
+  .md-nav--primary .md-nav__item { padding: 0; }
+  .md-nav--primary .md-nav__item > .md-nav__link { margin-right: 0; }
+  .md-nav--primary .md-nav__link {
+    gap: 0.55rem;
+    margin: 1px 0 0;
+    padding: 0.32rem 0.5rem;
+    border-radius: 0.2rem;
+    font-size: 0.7rem;
+    line-height: 1.25;
+  }
+  .md-nav--primary .md-nav__link > svg { width: 0.95rem; height: 0.95rem; opacity: 0.9; }
+  .md-nav--primary .md-nav__container { margin: 1px 0 0; padding: 0; }
+  .md-nav--primary .md-nav__container > a.md-nav__link { padding: 0.32rem 0.2rem 0.32rem 0.5rem; }
+  .md-nav--primary .md-nav__container > label.md-nav__link { flex: 0 0 auto; padding: 0.32rem 0.35rem; }
+  .md-nav--primary .md-nav__link .md-nav__icon { width: 0.9rem; height: 0.9rem; font-size: 0.9rem; margin: 0; }
+
+  .md-nav--primary a.md-nav__link:hover,
+  .md-nav--primary label.md-nav__link[for]:hover { background: var(--md-accent-fg-color--transparent); color: var(--md-default-fg-color); }
+  .md-nav--primary .md-nav__link--active,
+  .md-nav--primary .md-nav__link--active:hover { background: var(--tada-champion-bg); color: var(--tada-champion); }
+  /* the section you are in */
+  .md-nav--primary .md-nav__item--active > .md-nav__container > a.md-nav__link:not(.md-nav__link--active),
+  .md-nav--primary .md-nav__item--active > label.md-nav__link { font-weight: 600; }
+
+  /* pages of a section: indented under the section's glyph, on a hairline guide */
+  .md-nav--primary .md-nav__item--nested > .md-nav > .md-nav__list {
+    margin: 0.1rem 0 0.35rem 0.95rem;
+    padding: 0 0 0 0.4rem;
+    border-left: 1px solid var(--tada-rule);
+  }
+  .md-nav--primary .md-nav .md-nav .md-nav__link {
+    font-size: 0.66rem;
+    color: var(--md-default-fg-color--light);
+    padding-top: 0.26rem;
+    padding-bottom: 0.26rem;
+  }
+  .md-nav--primary .md-nav .md-nav .md-nav__link > svg { width: 0.8rem; height: 0.8rem; opacity: 0.6; }
+  .md-nav--primary .md-nav .md-nav .md-nav__link--active { position: relative; color: var(--tada-champion); }
+  .md-nav--primary .md-nav .md-nav .md-nav__link--active > svg { opacity: 1; }
+  .md-nav--primary .md-nav .md-nav .md-nav__link--active::before {       /* the marker sits on the guide */
+    content: "";
+    position: absolute;
+    left: -0.4rem;
+    top: 0.2rem;
+    bottom: 0.2rem;
+    width: 2px;
+    border-radius: 1px;
+    background: var(--tada-champion);
+  }
+
+  /* the page outline on the right, in the same voice */
+  .md-nav--secondary > .md-nav__title { position: static; }
+  .md-nav--secondary .md-nav__list { padding: 0; }
+  .md-nav--secondary .md-nav__item { padding: 0; }
+  .md-nav--secondary > .md-nav__list { margin-left: 0.5rem; border-left: 1px solid var(--tada-rule); }
+  .md-nav--secondary .md-nav__link {
+    margin: 0;
+    padding: 0.22rem 0.5rem;
+    font-family: var(--tada-font-head);
+    font-size: 0.64rem;
+    line-height: 1.3;
+    color: var(--md-default-fg-color--light);
+    position: relative;
+  }
+  .md-nav--secondary .md-nav__item > .md-nav__link { margin-right: 0; }
+  .md-nav--secondary .md-nav .md-nav .md-nav__link { padding-left: 1.1rem; }
+  .md-nav--secondary .md-nav__link:hover { color: var(--md-default-fg-color); }
+  .md-nav--secondary .md-nav__link--passed { color: var(--md-default-fg-color--light); }
+  .md-nav--secondary .md-nav__link--active { color: var(--tada-champion); font-weight: 600; }
+  .md-nav--secondary .md-nav__link--active::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 0.15rem;
+    bottom: 0.15rem;
+    width: 2px;
+    background: var(--tada-champion);
+  }
+}
+
+/* ---- narrow screens: the drawer --------------------------------------------------------------------------- */
+@media screen and (max-width: 76.234375em) {
+  /* a little wider than the theme's 242 px, so most page names fit on one line */
+  .md-sidebar--primary { width: 14rem; }
+  [dir="ltr"] .md-sidebar--primary { left: -14rem; }
+  [dir="ltr"] [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary { transform: translateX(14rem); }
+
+  /* one slim title row instead of the tall banner: logo and site name, or back arrow and section name */
+  .md-nav--primary .md-nav__title {
+    display: flex;
+    align-items: center;
+    height: auto;
+    min-height: 2.8rem;
+    padding: 0 0.9rem 0 2.75rem;
+    border-bottom: 1px solid var(--tada-rule);
+    background: var(--md-primary-fg-color--light);
+    color: var(--md-primary-bg-color);
+    font-family: var(--tada-font-head);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .md-nav--primary .md-nav__title[for="__drawer"] { background: var(--md-primary-fg-color); }
+  .md-nav--primary .md-nav__title .md-nav__icon { top: 50%; left: 0.75rem; margin: -0.6rem 0 0; color: var(--tada-nav-glyph); }
+  .md-nav--primary .md-nav__title .md-logo { top: 50%; left: 0.8rem; right: auto; margin: -0.7rem 0 0; padding: 0; }
+  .md-nav--primary .md-nav__title .md-logo svg { height: 1.4rem; width: 1.4rem; color: var(--tada-champion); }
+  .md-nav__source { border-bottom: 1px solid var(--tada-rule); background: transparent; color: var(--md-default-fg-color--light); }
+
+  .md-nav--primary .md-nav__title ~ .md-nav__list { padding: 0.35rem 0; box-shadow: none; }
+  .md-nav--primary .md-nav__item { border-top: 0; }
+  .md-nav--primary .md-nav__link {
+    gap: 0.75rem;
+    min-height: 2.5rem;                 /* a comfortable touch target */
+    margin: 0;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.8rem;
+    line-height: 1.25;
+  }
+  .md-nav--primary .md-nav__link > svg { width: 1.05rem; height: 1.05rem; }
+  .md-nav--primary .md-nav__container { min-height: 0; padding: 0; }
+  .md-nav--primary .md-nav__container > a.md-nav__link { padding: 0.3rem 0.3rem 0.3rem 0.9rem; }
+  .md-nav--primary .md-nav__container > label.md-nav__link { flex: 0 0 auto; padding: 0.3rem 0.8rem 0.3rem 0.6rem; }
+  .md-nav--primary .md-nav__link .md-nav__icon { width: 1.1rem; height: 1.1rem; font-size: 1.1rem; margin: 0; }
+
+  .md-nav--primary .md-nav__link--active,
+  .md-nav--primary .md-nav__item--active > label.md-nav__link[for="__toc"] {
+    background: var(--tada-champion-bg);
+    box-shadow: inset 3px 0 0 var(--tada-champion);
+    color: var(--tada-champion);
+    font-weight: 600;
+  }
+  .md-nav--primary .md-nav__item--active > label.md-nav__link[for="__toc"] > svg { color: var(--tada-champion); }
+  /* the section you are in, seen from the level above */
+  .md-nav--primary .md-nav__item--active > .md-nav__container { box-shadow: inset 3px 0 0 var(--tada-champion); border-radius: 0; }
+  .md-nav--primary .md-nav__item--active > .md-nav__container > a.md-nav__link:not(.md-nav__link--active) { font-weight: 600; }
+
+  /* the page outline inside the drawer: quieter than the pages */
+  .md-nav--primary .md-nav--secondary .md-nav__link { min-height: 2.1rem; font-size: 0.74rem; color: var(--md-default-fg-color--light); }
+  .md-nav--primary .md-nav--secondary .md-nav__link--active { background: none; box-shadow: none; }
+}
+
+/* breadcrumbs (navigation.path) */
+.md-path { font-family: var(--tada-font-head); letter-spacing: 0.04em; }

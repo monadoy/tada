@@ -1,0 +1,59 @@
+{
+ "procedures": {
+  "tmb": {
+   "label": "TMB",
+   "name": "Trombone (MXP)",
+   "use_case": 1
+  },
+  "pms": {
+   "label": "PMS",
+   "name": "Point merge (BGY)",
+   "use_case": 2
+  }
+ },
+ "reference": {
+  "tmb": "1_76",
+  "pms": "1_77"
+ },
+ "generators": {
+  "monad": "The paper's evaluation generator: 5 NM AMAN spacing, no random extra TTL (TADA_GENERATOR=procedure in the public code)"
+ },
+ "agents": [
+  {
+   "id": "1_76",
+   "procedure": "tmb",
+   "whats_new": "Published TMB policy: Milan Malpensa trombone. The model in artifacts/single_agent/mxp of the repository (internal run id 1_76).",
+   "headline": {
+    "n": 100,
+    "solved": 74,
+    "los": 20
+   },
+   "trainer": "jax",
+   "card": "results/",
+   "weights": {
+    "url": "agents/1_76.safetensors",
+    "size": 791256,
+    "sha256": "7144506c514d8327330280495941ab78c99e5bb77357149c499daea3f279dc16"
+   },
+   "card_label": "Paper results \u203a"
+  },
+  {
+   "id": "1_77",
+   "procedure": "pms",
+   "whats_new": "Published PMS policy: Milan Bergamo point merge. The model in artifacts/single_agent/pms of the repository (internal run id 1_77).",
+   "headline": {
+    "n": 100,
+    "solved": 64,
+    "los": 6
+   },
+   "trainer": "jax",
+   "card": "results/",
+   "weights": {
+    "url": "agents/1_77.safetensors",
+    "size": 791272,
+    "sha256": "29d06aa6e60407aeedf0e02847480be6f42bcbf9c662f6fe62a9cccf9887ef79"
+   },
+   "card_label": "Paper results \u203a"
+  }
+ ]
+}

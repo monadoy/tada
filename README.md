@@ -9,10 +9,13 @@ The policies suggest speed changes, shortcuts, vectors and path extensions that 
 - [Multi-agent guide](multi_agent/README.md): Ray RLlib and PyTorch implementation.
 - [Single-agent guide](single-agent/README.md): JAX implementation with SB3-compatible policies.
 - `artifacts/`: trained MXP and PMS models for both implementations.
+- [Documentation site](website/README.md): the design of both approaches, the results of the paper, the TADA Lab and the single-agent research notes. Sources are in `website/`.
 
 Each implementation includes its required scenario and seed inputs. Licensed aircraft performance data is a prerequisite and is not included; see [aircraft performance data](docs/aircraft-designs.md). The guides cover setup, evaluation and training.
 
 Research software and models, shared as is.
+
+The TADA Lab on the documentation site flies the published single-agent policies in the browser. Its engine is published encrypted and unlocks with a key that anyone may request; see the [Lab engine terms](website/LAB-ENGINE-TERMS.md).
 
 ## Acknowledgements
 

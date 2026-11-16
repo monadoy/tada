@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{#- Previous / next buttons at the end of every page: direction, section and page name, each with the
+    page's own glyph (front matter `icon:`), so moving through the site never needs the sidebar. -#}
+{% macro pager_glyph(p) -%}
+  {%- if p.meta and p.meta.icon -%}
+    <span class="tada-pager__glyph" aria-hidden="true">{% include ".icons/" ~ p.meta.icon ~ ".svg" %}</span>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro pager_section(p) -%}
+  {%- if p.parent and p.parent.title and p.parent.title != p.title %} · {{ p.parent.title }}{% endif -%}
+{%- endmacro %}
+
+{% block content %}
+  {{ super() }}
+  {% if page and not page.meta.hide_pager and (page.previous_page or page.next_page) %}
+    <nav class="tada-pager" aria-label="Previous and next page">
+      {% if page.previous_page %}
+        <a class="tada-pager__btn tada-pager__btn--prev" href="{{ page.previous_page.url | url }}" rel="prev">
+          <span class="tada-pager__arrow" aria-hidden="true">{% include ".icons/material/arrow-left.svg" %}</span>
+          <span class="tada-pager__text">
+            <span class="tada-pager__dir">Previous{{ pager_section(page.previous_page) }}</span>
+            <span class="tada-pager__title">{{ pager_glyph(page.previous_page) }}{{ page.previous_page.title }}</span>
+          </span>
+        </a>
+      {% else %}
+        <span class="tada-pager__spacer"></span>
+      {% endif %}
+      {% if page.next_page %}
+        <a class="tada-pager__btn tada-pager__btn--next" href="{{ page.next_page.url | url }}" rel="next">
+          <span class="tada-pager__text">
+            <span class="tada-pager__dir">Next{{ pager_section(page.next_page) }}</span>
+            <span class="tada-pager__title">{{ pager_glyph(page.next_page) }}{{ page.next_page.title }}</span>
+          </span>
+          <span class="tada-pager__arrow" aria-hidden="true">{% include ".icons/material/arrow-right.svg" %}</span>
+        </a>
+      {% endif %}
+    </nav>
+  {% endif %}
+{% endblock %}

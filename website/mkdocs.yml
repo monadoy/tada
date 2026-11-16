@@ -1,0 +1,204 @@
+site_name: TADA · RL for arrival management
+site_description: "Single- and multi-agent reinforcement learning for time-based arrival management at Milan Malpensa (trombone) and Milan Bergamo (point merge): design, results and a lab to fly the published agents"
+# The published address. The deployment workflow sets SITE_URL; a local build or preview leaves it empty.
+site_url: !ENV [SITE_URL, ""]
+repo_url: https://github.com/monadoy/tada
+repo_name: monadoy/tada
+edit_uri: ""
+docs_dir: docs
+copyright: "Research software and models, shared as is. Developed within TADA (SESAR 3 JU, grant agreement No 101166972)."
+
+theme:
+  name: material
+  custom_dir: overrides
+  font: false
+  icon:
+    logo: material/airplane-landing
+    repo: material/github
+  features:
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - navigation.tracking
+    - content.code.copy
+    - toc.follow
+  palette:
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+extra_css:
+  - stylesheets/tada-components.css
+  - stylesheets/theme.css
+  - stylesheets/nav.css
+  - stylesheets/site.css
+  - stylesheets/lab.css
+
+extra_javascript:
+  - javascripts/tada.js
+  - javascripts/key-request.js
+  - javascripts/lab-engine.js
+  - javascripts/lab.js
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: !relative $config_dir
+      check_paths: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+      title: On this page
+
+nav:
+  - Home: index.md
+  - Results: results.md
+  - How it works:
+      - how/index.md
+      - The problem: how/problem.md
+      - Episodes and windowing: how/environments.md
+      - Observations: how/observations.md
+      - Actions and reselection: how/actions.md
+      - Policy network: how/policy.md
+      - Objective and reward: how/objective.md
+      - Separation rules: how/separation.md
+      - Rollout search: how/search.md
+      - Multi-agent approach: how/multi-agent.md
+  - TADA Lab:
+      - lab/index.md
+      - Request a key: lab/access.md
+  - Use the code:
+      - code/index.md
+      - Evaluate the models: code/evaluate.md
+      - Train a policy: code/train.md
+  - Glossary: glossary.md
+  - Research notes:
+      - notes/index.md
+      - Findings:
+          - notes/findings/index.md
+          - Reselection: notes/findings/reselection.md
+          - Sequencing: notes/findings/sequencing.md
+          - Order first? (Phase 0): notes/findings/order-first.md
+          - Over-capacity scenarios: notes/findings/capacity.md
+          - Long streams: notes/findings/long-streams.md
+          - Search at inference: notes/findings/lookahead.md
+          - Point merge: notes/findings/point-merge.md
+          - Training from scratch: notes/findings/curriculum.md
+          - Evaluation noise: notes/findings/evaluation-noise.md
+      - Development runs:
+          - notes/models/index.md
+          - Best development run: notes/models/best.md
+          - Windowed:
+              - "1_104": notes/models/1_104.md
+              - "1_103": notes/models/1_103.md
+              - "1_102": notes/models/1_102.md
+              - "1_101": notes/models/1_101.md
+              - "1_82": notes/models/1_82.md
+              - "1_79": notes/models/1_79.md
+              - "1_78": notes/models/1_78.md
+              - "1_77": notes/models/1_77.md
+              - "1_76": notes/models/1_76.md
+              - "1_75": notes/models/1_75.md
+              - "1_74": notes/models/1_74.md
+              - "1_73": notes/models/1_73.md
+              - "1_72": notes/models/1_72.md
+              - "1_71": notes/models/1_71.md
+              - "1_70": notes/models/1_70.md
+              - "1_69": notes/models/1_69.md
+              - "1_68": notes/models/1_68.md
+              - "1_67": notes/models/1_67.md
+              - "1_66": notes/models/1_66.md
+              - "1_65": notes/models/1_65.md
+              - "1_64": notes/models/1_64.md
+              - "1_63": notes/models/1_63.md
+              - "1_62": notes/models/1_62.md
+              - "1_61": notes/models/1_61.md
+              - "1_60": notes/models/1_60.md
+              - "1_59": notes/models/1_59.md
+              - "1_58": notes/models/1_58.md
+              - "1_57": notes/models/1_57.md
+              - "1_56": notes/models/1_56.md
+              - "1_55": notes/models/1_55.md
+              - "1_54": notes/models/1_54.md
+              - "1_53": notes/models/1_53.md
+              - "1_52": notes/models/1_52.md
+              - "1_51": notes/models/1_51.md
+              - "1_50": notes/models/1_50.md
+              - "1_49": notes/models/1_49.md
+              - "1_48": notes/models/1_48.md
+              - "1_47": notes/models/1_47.md
+              - "1_46": notes/models/1_46.md
+              - "1_44": notes/models/1_44.md
+              - "1_43": notes/models/1_43.md
+              - "1_42": notes/models/1_42.md
+              - "1_41": notes/models/1_41.md
+              - "1_40": notes/models/1_40.md
+              - "1_39": notes/models/1_39.md
+              - "1_38": notes/models/1_38.md
+              - "1_37": notes/models/1_37.md
+              - "1_36": notes/models/1_36.md
+              - "1_35": notes/models/1_35.md
+              - "1_34": notes/models/1_34.md
+              - "1_33": notes/models/1_33.md
+              - "1_32": notes/models/1_32.md
+              - "1_31": notes/models/1_31.md
+          - 10-aircraft:
+              - "1_30_pms": notes/models/1_30_pms.md
+              - "1_29": notes/models/1_29.md
+              - "1_28": notes/models/1_28.md
+              - "1_27a": notes/models/1_27a.md
+              - "1_27": notes/models/1_27.md
+              - "1_26": notes/models/1_26.md
+              - "1_25": notes/models/1_25.md
+              - "1_24_pms": notes/models/1_24_pms.md
+              - "1_24": notes/models/1_24.md
+              - "1_23": notes/models/1_23.md
+              - "1_22": notes/models/1_22.md
+              - "1_21": notes/models/1_21.md
+              - "1_20": notes/models/1_20.md
+              - "1_19": notes/models/1_19.md
+              - "1_18": notes/models/1_18.md
+              - "1_17": notes/models/1_17.md
+              - "1_16_b": notes/models/1_16_b.md
+              - "1_16_a": notes/models/1_16_a.md
+              - "1_16": notes/models/1_16.md
+      - Training notes:
+          - notes/training/index.md
+          - Reference curves: notes/training/reference.md
+          - Search distillation: notes/training/distillation.md
+          - Discrete SAC: notes/training/sac.md
+          - Compute: notes/training/compute.md
+          - TensorBoard: notes/training/tensorboard.md
+      - Evaluation battery: notes/evaluation.md
+      - Coverage: notes/coverage.md
+      - Experiment log: notes/log.md
+      - Progress board: notes/progress.md
+      - Roadmap: notes/roadmap.md
+      - Archive:
+          - notes/archive/index.md
+          - 22 clearances vs 15: notes/archive/clearance-sets.md
+          - The 10-aircraft reward: notes/archive/ten-aircraft-reward.md
+          - 10-aircraft tests: notes/archive/ten-aircraft-tests.md
+          - Early runs: notes/archive/early-runs.md
+          - Point merge: notes/archive/point-merge.md
+      - Renders: notes/renders.md

@@ -1,0 +1,37 @@
+---
+icon: material/medal-outline
+---
+
+# Best model
+
+!!! tada-archive "Research note"
+    Part of the development diary of the single-agent work, kept for reference. Model names such as
+    `1_38` are internal run ids (the published TMB and PMS policies are `1_76` and `1_77`). File paths and
+    commands refer to the private development repository, and numbers were measured with the evaluation
+    setup of the time. The published design is under [How it works](../../how/index.md); the final results are under
+    [Results](../../results.md).
+
+The current windowed champion is **[`1_38`](1_38.md)**, chosen by the [champion rule](index.md) (at most 5 losses of separation in 100 seeds, then most solved).
+
+<div class="tada-best">
+<div class="tada-best__head"><span class="tada-best__label">Current best</span><a class="tada-best__model" href="../1_38/">1_38</a><span class="tada-best__what">1_36 continued for another 5M steps on the same settings (reselection, budget 2).</span></div>
+<div class="tada-tiles"><div class="tada-tile tada-tile--ok"><span class="tada-tile__label">Solved</span><span class="tada-tile__value">63<span class="tada-tile__unit">/100</span></span><span class="tada-tile__delta">1_36: 65</span></div><div class="tada-tile tada-tile--ok"><span class="tada-tile__label">Hard-solved ±30 s</span><span class="tada-tile__value">24<span class="tada-tile__unit">/100</span></span><span class="tada-tile__delta">1_36: 29</span></div><div class="tada-tile tada-tile--bad"><span class="tada-tile__label">Separation lost</span><span class="tada-tile__value">3<span class="tada-tile__unit">/100</span></span><span class="tada-tile__delta">1_36: 9</span></div><div class="tada-tile tada-tile--champ"><span class="tada-tile__label">Flights on time</span><span class="tada-tile__value">92.7<span class="tada-tile__unit">%</span></span><span class="tada-tile__delta">1_36: 91.6%</span></div><div class="tada-tile tada-tile--"><span class="tada-tile__label">Clearances</span><span class="tada-tile__value">121.9<span class="tada-tile__unit"></span></span><span class="tada-tile__delta">1_36: 128.3</span></div></div>
+<div class="tada-best__foot">20-flight streams · 100 validation seeds · deterministic · tile footnotes: parent 1_36 · source <code>analysis/2026-09-26_1_36_multipick/eval_cont/f20.csv</code> · <a href="../">champion rule</a></div>
+</div>
+
+`1_101` solves more seeds (66) but loses separation on 9, above the gate of 5, so it is not eligible.
+
+`1_82` solves more seeds (64) but loses separation on 9, above the gate of 5, so it is not eligible.
+
+`1_36` solves more seeds (65) but loses separation on 9, above the gate of 5, so it is not eligible.
+
+## How `1_38` compares
+
+<table class="tada-table tada-compare"><thead><tr><th>100 seeds, deterministic unless stated</th><th><a href="../1_38/">1_38</a></th><th><a href="../1_36/">1_36</a></th><th><a href="../1_37/">1_37</a></th></tr></thead><tbody><tr><td>20-flight: solved</td><td>63</td><td>65</td><td>34</td></tr><tr><td>20-flight: hard-solved</td><td>24</td><td>29</td><td>1</td></tr><tr><td>20-flight: separation lost</td><td>3</td><td>9</td><td>4</td></tr><tr><td>20-flight: flights on time</td><td>0.927</td><td>0.916</td><td>0.832</td></tr><tr><td>20-flight: clearances / stream</td><td>121.9</td><td>128.3</td><td>80.6</td></tr><tr><td>20-flight: AMAN swaps / stream</td><td>0.54</td><td>0.07</td><td>1.02</td></tr><tr><td>stitched 2×20: solved</td><td>34</td><td>38</td><td>10</td></tr><tr><td>stitched 2×20: hard-solved</td><td>9</td><td>6</td><td>0</td></tr><tr><td>stitched 2×20: separation lost</td><td>15</td><td>16</td><td>11</td></tr><tr><td>stitched 2×20: flights on time</td><td>0.865</td><td>0.878</td><td>0.770</td></tr><tr><td>pass@10 (seeds)</td><td>76</td><td>80</td><td>54</td></tr><tr><td>separation lost, best of 10</td><td>2</td><td>2</td><td>1</td></tr><tr><td>with lookahead: solved</td><td>30</td><td>39</td><td>7</td></tr><tr><td>with lookahead: hard-solved</td><td>8</td><td>10</td><td>0</td></tr><tr><td>with lookahead: separation lost</td><td>1</td><td>2</td><td>7</td></tr><tr><td>with lookahead: flights on time</td><td>0.893</td><td>0.896</td><td>0.774</td></tr></tbody></table>
+
+
+Full report card: [`1_38`](1_38.md).
+
+## 10-aircraft track
+
+The best 10-aircraft model is [`1_26`](1_26.md): success 0.70, separation lost 0.07 (`experiments/atc_run_1_26_sep3nm/progress_scored.csv` at 10M).
